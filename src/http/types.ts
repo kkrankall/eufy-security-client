@@ -5100,6 +5100,24 @@ export const DeviceLockEventOriginProperty: PropertyMetadataNumeric = {
   default: 0,
 };
 
+export const DeviceLockEventOriginSmartSafeProperty: PropertyMetadataNumeric = {
+  key: "custom_lockEventOrigin",
+  name: PropertyName.DeviceLockEventOrigin,
+  label: "Lock Event Origin",
+  readable: true,
+  writeable: false,
+  type: "number",
+  states: {
+    0: "None",
+    1: "PIN",
+    2: "Fingerprint",
+    3: "Key",
+    4: "App",
+    5: "Dual Unlock",
+  },
+  default: 0,
+};
+
 export const DeviceBeepVolumeProperty: PropertyMetadataNumeric = {
   key: CommandType.CMD_SMARTLOCK_VOLUME,
   name: PropertyName.DeviceBeepVolume,
@@ -8202,6 +8220,7 @@ export const DeviceProperties: Properties = {
     [PropertyName.DeviceLowBatteryAlert]: DeviceLowBatteryAlertProperty,
     [PropertyName.DeviceLongTimeNotCloseAlert]: DeviceLongTimeNotCloseAlertProperty,
     [PropertyName.DeviceWrongTryProtectAlert]: DeviceWrongTryProtectAlertProperty,
+    [PropertyName.DeviceLockEventOrigin]: DeviceLockEventOriginSmartSafeProperty,
   },
   [DeviceType.SMART_SAFE_7401]: {
     ...GenericDeviceProperties,
@@ -8240,6 +8259,7 @@ export const DeviceProperties: Properties = {
     [PropertyName.DeviceLowBatteryAlert]: DeviceLowBatteryAlertProperty,
     [PropertyName.DeviceLongTimeNotCloseAlert]: DeviceLongTimeNotCloseAlertProperty,
     [PropertyName.DeviceWrongTryProtectAlert]: DeviceWrongTryProtectAlertProperty,
+    [PropertyName.DeviceLockEventOrigin]: DeviceLockEventOriginSmartSafeProperty,
   },
   [DeviceType.SMART_SAFE_7402]: {
     ...GenericDeviceProperties,
@@ -8278,6 +8298,7 @@ export const DeviceProperties: Properties = {
     [PropertyName.DeviceLowBatteryAlert]: DeviceLowBatteryAlertProperty,
     [PropertyName.DeviceLongTimeNotCloseAlert]: DeviceLongTimeNotCloseAlertProperty,
     [PropertyName.DeviceWrongTryProtectAlert]: DeviceWrongTryProtectAlertProperty,
+    [PropertyName.DeviceLockEventOrigin]: DeviceLockEventOriginSmartSafeProperty,
   },
   [DeviceType.SMART_SAFE_7403]: {
     ...GenericDeviceProperties,
@@ -8316,6 +8337,7 @@ export const DeviceProperties: Properties = {
     [PropertyName.DeviceLowBatteryAlert]: DeviceLowBatteryAlertProperty,
     [PropertyName.DeviceLongTimeNotCloseAlert]: DeviceLongTimeNotCloseAlertProperty,
     [PropertyName.DeviceWrongTryProtectAlert]: DeviceWrongTryProtectAlertProperty,
+    [PropertyName.DeviceLockEventOrigin]: DeviceLockEventOriginSmartSafeProperty,
   },
   [DeviceType.SMART_DROP]: {
     ...GenericDeviceProperties,

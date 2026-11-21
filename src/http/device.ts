@@ -5784,13 +5784,24 @@ export class SmartSafe extends Device {
               if (eventValues.action === 0) {
                 this.updateRawProperty(CommandType.CMD_SMARTSAFE_LOCK_STATUS, "0", "push");
                 /*
-                                        type values:
-                                            1: Unlocked by PIN
-                                            2: Unlocked by User
-                                            3: Unlocked by key
-                                            4: Unlocked by App
-                                            5: Unlocked by Dual Unlock
-                                    */
+                  type values (see DeviceLockEventOriginSmartSafeProperty):
+                    1: Unlocked by PIN
+                    2: Unlocked by User (fingerprint)
+                    3: Unlocked by key
+                    4: Unlocked by App
+                    5: Unlocked by Dual Unlock
+                */
+                if (Number.isInteger(eventValues.type) && eventValues.type >= 1 && eventValues.type <= 5) {
+                  this.updateProperty(PropertyName.DeviceLockEventOrigin, eventValues.type);
+                  this.clearEventTimeout(DeviceEvent.Lock);
+                  this.eventTimeouts.set(
+                    DeviceEvent.Lock,
+                    setTimeout(async () => {
+                      this.updateProperty(PropertyName.DeviceLockEventOrigin, 0);
+                      this.eventTimeouts.delete(DeviceEvent.Lock);
+                    }, eventDurationSeconds * 1000)
+                  );
+                }
               } else if (eventValues.action === 1) {
                 this.updateRawProperty(CommandType.CMD_SMARTSAFE_LOCK_STATUS, "1", "push");
               } else if (eventValues.action === 2) {
